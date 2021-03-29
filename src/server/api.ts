@@ -1,5 +1,7 @@
 import express from "express";
+import bodyParser from "body-parser";
 import { Repository } from "src/model/task/repository";
+import { ITask } from "src/model/task/task";
 
 /**
  * API設定
@@ -31,4 +33,33 @@ export class API {
         this.app.listen(this.conf.ListenHost);
     }
 
+    /**
+     * Expressルーティング設定
+     */
+    private routing() {
+        this.app.use(bodyParser.json());
+        this.app.use(bodyParser.urlencoded({extended: true}));
+
+        this.app.get("/api/tasks", this.list);
+        this.app.post("/api/tasks", this.create);
+
+        this.app.use("/", express.static(this.conf.WebRoot));
+    }
+
+    /**
+     * タスク一覧
+     */
+    private list = (req: express.Request, res: express.Response) => {
+        const tasks = this.repository.ListTasks();
+        res.json(tasks);
+    }
+
+    /**
+     * タスク追加
+     */
+     private create = (req: express.Request, res:express.Response) => {
+        const task: ITask = req.body;
+        const id = this.repository.AddTask(task);
+        res.json({id});
+    }
 }
