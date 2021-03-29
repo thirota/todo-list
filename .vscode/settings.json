@@ -1,6 +1,6 @@
 {
     "mochaExplorer.mochaPath": "./node_modules/mocha",
-    "mochaExplorer.files": "test/**/*.js",
+    "mochaExplorer.files": "test/**/*.ts",
     "mochaExplorer.require": [
         "ts-node/register",
     ],
