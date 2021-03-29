@@ -11,4 +11,23 @@ describe("Task repository", () => {
         assert.equal(tasks.length, 2);
     })
 
+    it("Be able to add 1 record", () => {
+        const repo = new Repository();
+        const newTask: ITask = {
+            id: 0,
+            text: "new task",
+        };
+        const newId = repo.AddTask(newTask);
+        console.log(newId);
+
+        const tasks = repo.ListTasks();
+        assert.equal(tasks.length, 3);
+        assert.notEqual(tasks.find((task: ITask): boolean => {
+            return task.text === "new task";
+        }), undefined);
+        assert.notEqual(tasks.find((task: ITask): boolean => {
+            return task.id === 3;
+        }), undefined);
+    })
+
 })
