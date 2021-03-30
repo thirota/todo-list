@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { Repository } from "src/model/task/repository";
-import { ITask } from "src/model/task/task";
+import { Repository } from "../model/task/repository";
+import { ITask } from "../model/task/task";
 
 /**
  * API設定
