@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "webpack build",
+            "command":["${workSpaceFolder}./node_modules/.bin/webpack"],
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher":[
+                "$tsc"
+            ]
+        }
+    ]
+}
